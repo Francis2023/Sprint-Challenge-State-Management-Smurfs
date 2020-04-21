@@ -1,34 +1,62 @@
-import React, {Component} from 'react';
-import {Form, Control} from 'react-redux-form'
-import {toggleEditting, addSmurfs} from '../actions';
+import React from 'react';
+import {toggleEditting, addSmurf} from '../actions';
 
 
-class Header extends React{
+const Header = () => {
 
-    const [newSmurf, setNewSmurf] = useState();
+    const [newSmurf, setNewSmurf] = useState({
+        name = " ",
+        age = [],
+        height = " "
+    });
 
     const handleChange = e => {
         setNewSmurf(e.target.value);
     };
 
+    const postSmurf = e => {
+        e.preventDefault();
+        addSmurf();
+    }
+
+
     return (
-      <div>
+      
         <form>
+            <label>Add New Smurf</label>
             <input
+            name="smurfName"
             type="text"
-            value={}
+            placeholder="Enter name"
+            value={newSmurf.name}
+            onChange={handleChange}
             />
+            <input
+            name="smurfAge"
+            type="number"
+            placeholder="Enter Age"
+            value={newSmurf.age}
+            onChange={handleChange}
+            />
+            <input
+            name="smurfHeight"
+            type="number"
+            placeholder="Enter Height"
+            value={newSmurf.height}
+            onChange={handleChange}
+            />
+            <button type="submit" onClick={postSmurf}>Add Smurts</button>
         </form>
     
-      </div>
+    
     )
-}
+};
 
 const mapStateToProps = state => ({
      smurfOnProps: state.reducer.smurfs
 });
 
 export default connect(
-    mapStateTopProps,
-    (toggleEditting,addSmurfs)
+    mapStateToProps,
+    (toggleEditting,addSmurf)
     )(Header);
