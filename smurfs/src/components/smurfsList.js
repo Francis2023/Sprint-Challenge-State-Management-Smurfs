@@ -4,9 +4,11 @@ import {connect} from 'react-redux';
 import {getSmurf} from '../actions'
 
 const smurfsList = props => {
+    console.log(props)
+    
     const fetchSmurf = e => {
         e.preventDefault();
-        props.getSmurf();
+        getSmurf();
     }
 
     return(
@@ -14,8 +16,8 @@ const smurfsList = props => {
          {props.error && <p className="error">{props.error}</p>}
          <button onClick={fetchSmurf}>Smurts</button>
          <div>
-             {props.smurfs.map(smurfs => {
-                 <h4 key={smurfs.url}>{smurfs.name}</h4>
+            {props.smurfs.map(smurfs => {
+                 <h4>{data.name}</h4>
              })}
          </div>
        </>

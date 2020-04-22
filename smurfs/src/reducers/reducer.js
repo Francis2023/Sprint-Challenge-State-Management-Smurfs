@@ -6,7 +6,7 @@ import {FETCH_SMURFS_START,
 
 const initialState = {
     smurfs: [],
-    error: '',
+    error: null,
     isfetching: false,
     editting: false
 }
@@ -16,20 +16,18 @@ function reducer(state = initialState, action) {
         case FETCH_SMURFS_START:
         return {
             ...state,
-            error: '',
             isfetching: true
         }
         case FETCH_SMURFS_SUCCESS:
         return {
             ...state,
-            error: '',
             isfetching: false,
             smurfs: action.payload
         }
         case FETCH_SMURFS_FAILURE:
         return {
             ...state,
-            error: action.payload,
+            error: action.error,
             isfetching: false
         }
         case SMURF_ADDED:
@@ -44,3 +42,7 @@ function reducer(state = initialState, action) {
 }
 
 export default reducer;
+
+export const getSmurfs = state => state.products;
+export const getSmurfsSuccess = state => state.isfetching;
+export const getSmurfsFailure = state => state.error;

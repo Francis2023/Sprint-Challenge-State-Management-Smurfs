@@ -1,13 +1,14 @@
-import React from 'react';
-import {toggleEditting, addSmurf} from '../actions';
+import React,{useState} from 'react';
+import {connect} from 'react-redux'
+import { addSmurf} from '../actions';
 
 
 const Header = () => {
 
     const [newSmurf, setNewSmurf] = useState({
-        name = " ",
-        age = [],
-        height = " "
+        name:'',
+        age:[],
+        height: ''
     });
 
     const handleChange = e => {
@@ -16,7 +17,7 @@ const Header = () => {
 
     const postSmurf = e => {
         e.preventDefault();
-        addSmurf();
+        addSmurf(newSmurf);
     }
 
 
@@ -53,10 +54,10 @@ const Header = () => {
 };
 
 const mapStateToProps = state => ({
-     smurfOnProps: state.reducer.smurfs
+     smurfOnProps: state.newSmurf
 });
 
 export default connect(
     mapStateToProps,
-    (toggleEditting,addSmurf)
+    (addSmurf)
     )(Header);

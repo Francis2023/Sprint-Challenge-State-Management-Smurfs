@@ -8,9 +8,9 @@ import logger from 'redux-logger'
 
 import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux"
-import {combineForms, initialFieldState} from "react-redux-form"
 
-const store = createStore(reducer,applyMiddleware(thunk,logger),combineForms({smurfs: initialFieldState,})) ;
+
+const store = createStore(reducer,applyMiddleware(thunk,logger)) ;
 
 ReactDOM.render(
 <Provider store={store} >
